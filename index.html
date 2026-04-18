@@ -3,487 +3,947 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photography Basics</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Photography Basics Carousel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --sand: #F2EDE4;
-  --warm-white: #FAF8F4;
-  --ink: #1C1917;
-  --stone: #78716C;
-  --terracotta: #C4714A;
-  --gold: #C9A97A;
-  --sage: #7A8C6E;
-  --size: 540px;
-}
-body {
-  background: #E8E2D9;
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 32px 16px; gap: 18px;
-  font-family: 'Jost', sans-serif;
-}
-.label-top { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #9a9188; }
-.carousel-wrapper {
-  width: var(--size); max-width: 96vw;
-  border-radius: 2px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-  overflow: hidden;
-}
-.track {
-  display: flex;
-  transition: transform 0.55s cubic-bezier(0.65,0,0.35,1);
-  will-change: transform;
-}
-.slide {
-  flex: 0 0 var(--size); max-width: 96vw;
-  width: var(--size); height: var(--size);
-  position: relative; overflow: hidden;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── SLIDE 1 COVER ── */
-.s1 { background: var(--ink); }
-.s1 .cover-photo {
-  position: absolute; inset: 0;
-  background: url('https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&q=80') center/cover;
-  opacity: 0.45;
-}
-.s1 .cover-grad {
-  position: absolute; inset: 0;
-  background: linear-gradient(150deg, rgba(28,25,23,0.2) 0%, rgba(28,25,23,0.88) 100%);
-}
-.s1 .cover-body {
-  position: relative; z-index: 2; height: 100%;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 46px;
-}
-.s1 .eyebrow { font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
-.s1 h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1.05; color: #fff; font-weight: 400; margin-bottom: 14px; }
-.s1 h2 em { font-style: italic; color: #d4b896; }
-.s1 .sub { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 1px; font-weight: 300; }
-.s1 .slide-tag { position: absolute; top: 36px; right: 40px; font-size: 0.7rem; color: rgba(255,255,255,0.25); letter-spacing: 2px; }
+  :root {
+    --cream: #F5F0E8;
+    --black: #0D0D0D;
+    --orange: #FF4D1C;
+    --gold: #C9A84C;
+    --muted: #888;
+    --slide-size: 540px;
+  }
 
-/* ── SLIDE 2 TRIANGLE ── */
-.s2 { background: var(--warm-white); display: flex; flex-direction: column; padding: 44px; justify-content: center; }
-.num-tag { position: absolute; top: 32px; right: 36px; font-size: 0.65rem; color: #c8c0b6; letter-spacing: 2px; }
-.eyebrow-t { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; }
-.s2 h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--ink); font-weight: 400; line-height: 1.15; margin-bottom: 8px; }
-.s2 .desc { font-size: 0.75rem; color: var(--stone); line-height: 1.7; max-width: 360px; margin-bottom: 24px; }
+  body {
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    padding: 40px 20px;
+    gap: 20px;
+  }
 
-/* ── SLIDE 3 APERTURE ── */
-.s3 { background: var(--ink); }
-.s3 .bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80') center top/cover; opacity: 0.2; }
-.s3 .body { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; padding: 40px; }
-.eyebrow-g { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-.s3 h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: #fff; font-weight: 400; margin-bottom: 4px; }
-.s3 .sub { font-size: 0.72rem; color: #9a9188; margin-bottom: 22px; }
-.ap-row { display: flex; gap: 10px; flex: 1; }
-.ap-card { flex: 1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
-.ap-img { flex: 1; background-size: cover; background-position: center top; }
-.ap-foot { background: rgba(28,25,23,0.92); padding: 8px 8px; text-align: center; }
-.ap-f { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); display: block; }
-.ap-d { font-size: 0.55rem; color: #777; letter-spacing: 0.5px; }
-.ap-scale { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-.ap-scale span { font-size: 0.58rem; color: #666; white-space: nowrap; }
-.ap-scale .bar { flex: 1; height: 2px; background: linear-gradient(90deg, var(--gold), #444); border-radius: 1px; }
+  h1 {
+    color: var(--cream);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    opacity: 0.5;
+  }
 
-/* ── SLIDE 4 SHUTTER ── */
-.s4 { background: var(--sand); }
-.s4 .body { height: 100%; display: flex; flex-direction: column; padding: 40px; }
-.s4 h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--ink); font-weight: 400; margin-bottom: 4px; }
-.s4 .sub { font-size: 0.72rem; color: var(--stone); margin-bottom: 20px; }
-.sh-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; flex: 1; }
-.sh-card { border-radius: 8px; overflow: hidden; position: relative; }
-.sh-img { width: 100%; height: 100%; background-size: cover; background-position: center; }
-.sh-grad { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 52%); }
-.sh-badge { position: absolute; top: 9px; left: 9px; background: rgba(0,0,0,0.52); backdrop-filter: blur(4px); border-radius: 20px; padding: 3px 9px; font-size: 0.54rem; color: rgba(255,255,255,0.8); letter-spacing: 1px; text-transform: uppercase; }
-.sh-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 9px 12px; }
-.sh-speed { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #fff; display: block; }
-.sh-cap { font-size: 0.56rem; color: rgba(255,255,255,0.58); }
+  .carousel-wrapper {
+    position: relative;
+    width: var(--slide-size);
+    max-width: 95vw;
+  }
 
-/* ── SLIDE 5 ISO ── */
-.s5 { background: var(--ink); }
-.s5 .body { height: 100%; display: flex; flex-direction: column; padding: 40px; }
-.s5 h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: #fff; font-weight: 400; margin-bottom: 4px; }
-.s5 .sub { font-size: 0.72rem; color: #9a9188; margin-bottom: 20px; }
-.iso-row { display: flex; gap: 8px; flex: 1; }
-.iso-col { flex: 1; display: flex; flex-direction: column; border-radius: 8px; overflow: hidden; }
-.iso-img { flex: 1; background-size: cover; background-position: center; position: relative; }
-.iso-grain {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  mix-blend-mode: overlay;
-}
-.iso-foot { background: #111; padding: 8px; text-align: center; }
-.iso-v { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--gold); display: block; }
-.iso-d { font-size: 0.55rem; color: #666; }
-.iso-bar { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-.iso-bar span { font-size: 0.6rem; white-space: nowrap; }
-.iso-bar .bar { flex: 1; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2a7a3a, var(--gold), #cc4422); }
+  .carousel {
+    overflow: hidden;
+    border-radius: 0px;
+  }
 
-/* ── SLIDE 6 SCENARIOS ── */
-.s6 { background: var(--warm-white); }
-.s6 .body { height: 100%; display: flex; flex-direction: column; padding: 38px; }
-.s6 h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--ink); font-weight: 400; margin-bottom: 4px; }
-.s6 .sub { font-size: 0.72rem; color: var(--stone); margin-bottom: 16px; }
-.scenarios { display: flex; flex-direction: column; gap: 7px; flex: 1; justify-content: center; }
-.scenario { display: flex; border-radius: 10px; overflow: hidden; border: 1px solid #e5dfd6; }
-.sc-photo { width: 86px; flex-shrink: 0; background-size: cover; background-position: center; }
-.sc-info { flex: 1; padding: 11px 14px; display: flex; flex-direction: column; justify-content: center; gap: 5px; }
-.sc-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--ink); }
-.sc-pills { display: flex; gap: 5px; flex-wrap: wrap; }
-.pill { background: var(--sand); border-radius: 20px; padding: 3px 9px; font-size: 0.57rem; color: var(--stone); }
-.pill strong { color: var(--ink); }
-.sc-note { font-size: 0.6rem; color: #bbb; font-style: italic; }
+  .track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  }
 
-/* ── SLIDE 7 DOF ── */
-.s7 { background: var(--ink); }
-.s7 .body { height: 100%; display: flex; flex-direction: column; padding: 40px; }
-.s7 h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; font-weight: 400; margin-bottom: 4px; }
-.s7 .sub { font-size: 0.72rem; color: #9a9188; margin-bottom: 20px; }
-.dof-pair { display: flex; gap: 10px; flex: 1; }
-.dof-card { flex: 1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
-.dof-img { flex: 1; background-size: cover; background-position: center; }
-.dof-foot { background: rgba(28,25,23,0.92); padding: 10px 12px; }
-.dof-f { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); display: block; }
-.dof-l { font-size: 0.58rem; color: #777; line-height: 1.4; }
-.dof-tip { font-size: 0.67rem; color: #888; text-align: center; margin-top: 14px; }
+  /* ── SLIDE BASE ── */
+  .slide {
+    flex: 0 0 var(--slide-size);
+    max-width: 95vw;
+    width: var(--slide-size);
+    height: var(--slide-size);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
 
-/* ── SLIDE 8 CHEAT SHEET ── */
-.s8 { background: var(--sand); }
-.s8 .body { height: 100%; display: flex; flex-direction: column; padding: 40px; }
-.s8 h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--ink); font-weight: 400; margin-bottom: 20px; }
-.cheat { display: flex; flex-direction: column; gap: 7px; flex: 1; justify-content: center; }
-.cheat-row { display: grid; grid-template-columns: 96px 1fr 1fr; border-radius: 8px; overflow: hidden; min-height: 58px; }
-.cn { background: var(--ink); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px; }
-.cn .ico { font-size: 1.1rem; }
-.cn .nm { font-size: 0.58rem; letter-spacing: 1px; text-transform: uppercase; }
-.cc { padding: 9px 13px; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
-.cc:nth-child(2) { background: #ebe5da; }
-.cc:nth-child(3) { background: #e0d9ce; }
-.cc .cl { font-size: 0.53rem; letter-spacing: 1px; text-transform: uppercase; color: #aaa; }
-.cc .cv { font-size: 0.68rem; color: var(--ink); line-height: 1.35; }
+  /* ── WATERMARK ── */
+  .watermark {
+    position: absolute;
+    bottom: 14px;
+    right: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.28);
+    z-index: 100;
+    pointer-events: none;
+    font-weight: 400;
+  }
+  /* On light slides use dark watermark */
+  .watermark-dark {
+    color: rgba(0,0,0,0.22);
+  }
 
-/* ── SLIDE 9 FINALE ── */
-.s9 { }
-.s9 .bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80') center/cover; }
-.s9 .ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,25,23,0.94) 0%, rgba(28,25,23,0.52) 55%, rgba(28,25,23,0.28) 100%); }
-.s9 .body { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 44px; }
-.s9 h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #fff; font-weight: 400; line-height: 1.1; margin-bottom: 22px; }
-.s9 h2 em { font-style: italic; color: #d4b896; }
-.tips { display: flex; flex-direction: column; gap: 9px; }
-.tip { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); border-radius: 8px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.07); }
-.tip-n { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); min-width: 18px; padding-top: 1px; }
-.tip p { font-size: 0.67rem; color: rgba(255,255,255,0.72); line-height: 1.5; }
-.tip p strong { color: #fff; font-weight: 500; }
+  /* ── SLIDE 1: COVER ── */
+  .s1 {
+    background: var(--black);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .s1 .bg-circle {
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .s1 .bg-circle:nth-child(2) { width: 300px; height: 300px; border-color: rgba(201,168,76,0.25); }
+  .s1 .bg-circle:nth-child(3) { width: 180px; height: 180px; border-color: rgba(201,168,76,0.4); }
+  .s1 .lens {
+    position: relative; z-index:2;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #3a3a3a 0%, #111 60%, #000 100%);
+    box-shadow: 0 0 0 8px #222, 0 0 0 16px #333, 0 0 60px rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 32px;
+  }
+  .s1 .lens::after {
+    content:'';
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 30%, #555, #111);
+    box-shadow: inset 0 2px 8px rgba(255,255,255,0.15);
+  }
+  .s1 .lens-flare {
+    position: absolute; top: 22%; left: 28%;
+    width: 18px; height: 18px;
+    background: radial-gradient(circle, rgba(255,255,255,0.6), transparent);
+    border-radius: 50%;
+    z-index:3;
+  }
+  .s1 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    color: var(--cream);
+    letter-spacing: 6px;
+    line-height: 1;
+    position: relative; z-index:2;
+  }
+  .s1 p {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 0.7rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-top: 10px;
+    position: relative; z-index:2;
+  }
+  .s1 .swipe-hint {
+    position: absolute;
+    bottom: 24px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .s1 .swipe-hint::after { content: '→'; }
 
-/* ── NAV ── */
-.nav { display: flex; align-items: center; gap: 14px; }
-.btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.88); border: none; cursor: pointer; font-size: 0.9rem; color: var(--ink); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: all 0.2s; }
-.btn:hover { background: #fff; transform: scale(1.05); }
-.dots { display: flex; gap: 5px; }
-.dot { width: 5px; height: 5px; border-radius: 3px; background: rgba(28,25,23,0.22); transition: all 0.3s; cursor: pointer; }
-.dot.active { background: var(--terracotta); width: 18px; }
-.counter { font-size: 0.65rem; color: #aaa; letter-spacing: 1px; min-width: 32px; text-align: center; }
+  /* ── SLIDE 2: THE EXPOSURE TRIANGLE ── */
+  .s2 {
+    background: var(--cream);
+    padding: 40px;
+    justify-content: center;
+  }
+  .s2 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); font-weight: 500; margin-bottom: 12px; }
+  .s2 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; color: var(--black); margin-bottom: 20px; }
+  .triangle-wrap { display: flex; justify-content: center; margin: 20px 0; }
+  .triangle-svg { width: 260px; height: 230px; }
+  .s2 .desc { font-size: 0.78rem; color: #555; line-height: 1.6; max-width: 340px; }
+
+  /* ── SLIDE 3: APERTURE ── */
+  .s3 {
+    background: var(--black);
+    color: var(--cream);
+    padding: 36px;
+  }
+  .s3 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .s3 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; margin-bottom: 4px; }
+  .s3 .sub { font-size: 0.72rem; color: #999; letter-spacing: 1px; margin-bottom: 20px; }
+  .aperture-row { display: flex; gap: 16px; align-items: flex-end; margin: 20px 0; }
+  .aperture-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .aperture-item span { font-size: 0.62rem; color: var(--gold); letter-spacing: 1px; }
+  .aperture-hole {
+    background: radial-gradient(circle, #111 var(--hole), #555 calc(var(--hole) + 5%), #333 100%);
+    border-radius: 50%;
+    border: 2px solid #444;
+  }
+  .dof-bar { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; }
+  .dof-row { display: flex; align-items: center; gap: 10px; font-size: 0.68rem; color: #aaa; }
+  .dof-visual { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--orange), transparent); }
+
+  /* ── SLIDE 4: SHUTTER SPEED ── */
+  .s4 {
+    background: #0a0a0a;
+    padding: 36px;
+    color: var(--cream);
+    overflow: hidden;
+  }
+  .s4 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .s4 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; margin-bottom: 4px; }
+  .s4 .sub { font-size: 0.72rem; color: #999; margin-bottom: 18px; }
+  .shutter-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+  .shutter-box {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    height: 120px;
+    background: #1a1a1a;
+    display: flex; align-items: flex-end;
+  }
+  .shutter-box .label {
+    position: absolute; top: 8px; left: 8px;
+    font-size: 0.6rem; letter-spacing: 1px; color: rgba(255,255,255,0.5);
+    z-index: 2;
+  }
+  .shutter-box .val {
+    position: absolute; top: 8px; right: 8px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--gold);
+    z-index: 2;
+  }
+  .fast-scene { width: 100%; height: 100%; position: relative; }
+  .slow-scene { width: 100%; height: 100%; position: relative; overflow: hidden; }
+  .blur-scene { width:100%; height:100%; position:relative; display:flex; align-items:center; justify-content:center; }
+
+  /* ── SLIDE 5: ISO ── */
+  .s5 {
+    background: #f8f4ee;
+    padding: 36px;
+  }
+  .s5 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .s5 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--black); margin-bottom: 4px; }
+  .s5 .sub { font-size: 0.72rem; color: #777; margin-bottom: 18px; }
+  .iso-scale { display: flex; gap: 0; margin: 16px 0; }
+  .iso-block {
+    flex: 1;
+    height: 80px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 6px 4px;
+    position: relative;
+  }
+  .iso-block span { font-size: 0.55rem; color: var(--black); font-weight: 500; z-index: 1; text-align:center; }
+  .iso-block .iso-val { font-size: 0.6rem; font-weight: 600; text-align: center; z-index:1; padding-bottom: 2px; }
+  .iso-tips { display: flex; gap: 10px; margin-top: 10px; }
+  .iso-tip { flex:1; background: var(--black); border-radius: 8px; padding: 10px; }
+  .iso-tip .emoji { font-size: 1.2rem; }
+  .iso-tip p { font-size: 0.62rem; color: #ccc; margin-top: 4px; line-height: 1.4; }
+
+  /* ── SLIDE 6: HOW THEY WORK TOGETHER ── */
+  .s6 {
+    background: var(--black);
+    padding: 32px;
+    color: var(--cream);
+  }
+  .s6 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .s6 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .exposure-meter {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .meter-label { font-size: 0.62rem; color: #666; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .meter-bar {
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #111 0%, #444 20%, var(--orange) 50%, #fff 80%, #fff 100%);
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .meter-labels { display: flex; justify-content: space-between; font-size: 0.55rem; color: #666; }
+  .triangle-settings { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .setting-card { background: #1a1a1a; border-radius: 8px; padding: 10px 8px; text-align: center; }
+  .setting-card .icon { font-size: 1.4rem; margin-bottom: 4px; }
+  .setting-card .name { font-size: 0.55rem; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+  .setting-card .effect { font-size: 0.6rem; color: #bbb; margin-top: 4px; line-height: 1.3; }
+  .balance-note { font-size: 0.68rem; color: #888; text-align: center; line-height: 1.5; margin-top: 12px; }
+
+  /* ── SLIDE 7: DEPTH OF FIELD ── */
+  .s7 {
+    background: #1c1714;
+    padding: 36px;
+    color: var(--cream);
+  }
+  .s7 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .s7 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; margin-bottom: 4px; }
+  .s7 .sub { font-size: 0.72rem; color: #aaa; margin-bottom: 20px; }
+  .dof-scene { display: flex; gap: 20px; }
+  .dof-card {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .dof-card-img {
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dof-card .card-label {
+    padding: 8px;
+    background: #111;
+    font-size: 0.65rem;
+    color: #ddd;
+    text-align: center;
+  }
+  .dof-card .card-label strong { color: var(--gold); display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 1px; }
+
+  /* ── SLIDE 8: QUICK REFERENCE ── */
+  .s8 {
+    background: var(--cream);
+    padding: 32px;
+  }
+  .s8 .tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+  .s8 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--black); margin-bottom: 16px; }
+  .cheat-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .cheat-row { display: flex; align-items: stretch; gap: 0; border-radius: 8px; overflow: hidden; }
+  .cheat-setting { background: var(--black); color: var(--cream); padding: 10px 14px; min-width: 110px; display: flex; flex-direction: column; justify-content: center; }
+  .cheat-setting .s-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; }
+  .cheat-setting .s-emoji { font-size: 1.2rem; }
+  .cheat-cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; }
+  .cheat-col { padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .cheat-col:first-child { background: #f0ebe0; }
+  .cheat-col:last-child { background: #e8e2d6; }
+  .cheat-col .c-label { font-size: 0.52rem; letter-spacing: 1px; text-transform: uppercase; color: #999; }
+  .cheat-col .c-val { font-size: 0.68rem; font-weight: 500; color: var(--black); line-height: 1.3; }
+
+  /* ── SLIDE 9: FINAL ── */
+  .s9 {
+    background: var(--black);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  .s9 .accent { color: var(--orange); font-family: 'Bebas Neue', sans-serif; font-size: 4.4rem; line-height: 1; display: block; }
+  .s9 h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--cream); letter-spacing: 4px; margin-bottom: 16px; }
+  .tips-list { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 360px; }
+  .tip-row { display: flex; align-items: center; gap: 12px; background: #1a1a1a; border-radius: 8px; padding: 9px 14px; text-align: left; }
+  .tip-row .num { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--gold); min-width: 24px; }
+  .tip-row p { font-size: 0.68rem; color: #ccc; line-height: 1.4; }
+  .tip-row p strong { color: var(--cream); }
+
+  /* Instagram CTA on slide 9 */
+  .ig-cta {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .ig-cta .ig-line {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ig-cta .ig-icon {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ig-cta .ig-icon svg { width: 16px; height: 16px; }
+  .ig-cta .ig-handle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: var(--cream);
+  }
+  .ig-cta .ig-sub {
+    font-size: 0.62rem;
+    color: #666;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .ig-divider {
+    width: 40px; height: 1px;
+    background: #333;
+    margin: 4px 0;
+  }
+
+  /* ── NAV CONTROLS ── */
+  .nav { display: flex; align-items: center; gap: 16px; margin-top: 16px; }
+  .btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: rgba(255,255,255,0.12); }
+  .dots { display: flex; gap: 6px; }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .dot.active { background: var(--orange); width: 20px; }
+  .counter { color: rgba(255,255,255,0.3); font-size: 0.7rem; letter-spacing: 1px; min-width: 36px; text-align: center; }
 </style>
 </head>
 <body>
 
-<div class="label-top">Photography Basics · Carousel</div>
+<h1>📸 PHOTOGRAPHY BASICS</h1>
 
 <div class="carousel-wrapper">
-<div class="track" id="track">
+  <div class="carousel">
+    <div class="track" id="track">
 
-<!-- 1. COVER -->
-<div class="slide s1">
-  <div class="cover-photo"></div>
-  <div class="cover-grad"></div>
-  <div class="slide-tag">01 / 09</div>
-  <div class="cover-body">
-    <div class="eyebrow">Photography Basics</div>
-    <h2>Learn to<br>shoot in<br><em>manual</em></h2>
-    <div class="sub">Aperture · Shutter Speed · ISO &nbsp;→&nbsp; Swipe to explore</div>
-  </div>
-</div>
-
-<!-- 2. TRIANGLE -->
-<div class="slide s2">
-  <div class="num-tag">02 / 09</div>
-  <div class="eyebrow-t">The Foundation</div>
-  <h2>The Exposure<br>Triangle</h2>
-  <p class="desc">Every photo is controlled by three settings working together. Change one and you'll need to adjust the others to keep the image looking right.</p>
-  <div style="display:flex;justify-content:center;">
-    <svg width="310" height="235" viewBox="0 0 310 235" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="155,16 18,228 292,228" fill="#F2EDE4" stroke="#D5CABC" stroke-width="1.5"/>
-      <polygon points="155,50 48,214 262,214" fill="#EDE6DB" stroke="#CBBFB0" stroke-width="1"/>
-      <polygon points="155,84 78,200 232,200" fill="#E5DDD0" stroke="none"/>
-      <text x="155" y="152" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="#9a8a78" letter-spacing="2">EXPOSURE</text>
-      <text x="155" y="168" text-anchor="middle" font-family="Jost,sans-serif" font-size="8" fill="#C4B8A8" letter-spacing="3">PERFECT BALANCE</text>
-      <circle cx="155" cy="16" r="5" fill="#C4714A"/>
-      <circle cx="18" cy="228" r="5" fill="#C4714A"/>
-      <circle cx="292" cy="228" r="5" fill="#C4714A"/>
-      <text x="155" y="10" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" font-weight="500" fill="#C4714A" letter-spacing="2">APERTURE</text>
-      <text x="5" y="244" font-family="Jost,sans-serif" font-size="11" font-weight="500" fill="#C4714A" letter-spacing="2">ISO</text>
-      <text x="305" y="244" text-anchor="end" font-family="Jost,sans-serif" font-size="11" font-weight="500" fill="#C4714A" letter-spacing="2">SHUTTER</text>
-      <line x1="155" y1="21" x2="155" y2="78" stroke="#C4714A" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.35"/>
-      <line x1="23" y1="223" x2="72" y2="202" stroke="#C4714A" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.35"/>
-      <line x1="287" y1="223" x2="238" y2="202" stroke="#C4714A" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.35"/>
-    </svg>
-  </div>
-</div>
-
-<!-- 3. APERTURE -->
-<div class="slide s3">
-  <div class="bg"></div>
-  <div class="body">
-    <div class="eyebrow-g">Setting 01</div>
-    <h2>Aperture</h2>
-    <div class="sub">The size of the lens opening — controls light & background blur</div>
-    <div class="ap-row">
-      <div class="ap-card">
-        <div class="ap-img" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80');"></div>
-        <div class="ap-foot"><span class="ap-f">f / 1.8</span><span class="ap-d">Blurry background · More light</span></div>
-      </div>
-      <div class="ap-card">
-        <div class="ap-img" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80');"></div>
-        <div class="ap-foot"><span class="ap-f">f / 5.6</span><span class="ap-d">Some blur · Balanced</span></div>
-      </div>
-      <div class="ap-card">
-        <div class="ap-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80');"></div>
-        <div class="ap-foot"><span class="ap-f">f / 16</span><span class="ap-d">Sharp everywhere · Less light</span></div>
-      </div>
-    </div>
-    <div class="ap-scale">
-      <span style="color:var(--gold);">Small f = Wide open</span>
-      <div class="bar"></div>
-      <span style="color:#555;">Large f = Narrow</span>
-    </div>
-  </div>
-</div>
-
-<!-- 4. SHUTTER SPEED -->
-<div class="slide s4">
-  <div class="body">
-    <div class="eyebrow-t">Setting 02</div>
-    <h2>Shutter Speed</h2>
-    <div class="sub">How long the sensor is exposed to light</div>
-    <div class="sh-grid">
-      <div class="sh-card">
-        <div class="sh-img" style="background:url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=500&q=80') center/cover;"></div>
-        <div class="sh-grad"></div>
-        <div class="sh-badge">Fast</div>
-        <div class="sh-info"><span class="sh-speed">1/2000s</span><span class="sh-cap">Freezes all motion</span></div>
-      </div>
-      <div class="sh-card">
-        <div class="sh-img" style="background:url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&q=80') center/cover;"></div>
-        <div class="sh-grad"></div>
-        <div class="sh-badge">Medium</div>
-        <div class="sh-info"><span class="sh-speed">1/250s</span><span class="sh-cap">Good for everyday shots</span></div>
-      </div>
-      <div class="sh-card">
-        <div class="sh-img" style="background:url('https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=500&q=80') center/cover;"></div>
-        <div class="sh-grad"></div>
-        <div class="sh-badge">Slow</div>
-        <div class="sh-info"><span class="sh-speed">1/4s</span><span class="sh-cap">Silky water effect</span></div>
-      </div>
-      <div class="sh-card">
-        <div class="sh-img" style="background:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&q=80') center bottom/cover;"></div>
-        <div class="sh-grad"></div>
-        <div class="sh-badge">Very Slow</div>
-        <div class="sh-info"><span class="sh-speed">10–30s</span><span class="sh-cap">Light trails · Use tripod</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 5. ISO -->
-<div class="slide s5">
-  <div class="body">
-    <div class="eyebrow-g">Setting 03</div>
-    <h2>ISO</h2>
-    <div class="sub">Sensor sensitivity to light — trade-off is grain</div>
-    <div class="iso-row">
-      <div class="iso-col">
-        <div class="iso-img" style="background:url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=400&q=80') center/cover;"></div>
-        <div class="iso-foot"><span class="iso-v">ISO 100</span><span class="iso-d">Clean · Outdoors</span></div>
-      </div>
-      <div class="iso-col">
-        <div class="iso-img" style="background:url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80') center/cover; filter:brightness(0.88);">
-          <div class="iso-grain" style="opacity:0.1;"></div>
+      <!-- SLIDE 1: COVER -->
+      <div class="slide s1">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="lens">
+          <div class="lens-flare"></div>
         </div>
-        <div class="iso-foot"><span class="iso-v">ISO 1600</span><span class="iso-d">Some grain · Indoors</span></div>
+        <h2>MASTER<br>YOUR<br>CAMERA</h2>
+        <p>Photography Basics · Swipe to Learn</p>
+        <div class="swipe-hint">Swipe</div>
+        <div class="watermark">@lumeaxis_</div>
       </div>
-      <div class="iso-col">
-        <div class="iso-img" style="background:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=400&q=80') center/cover; filter:brightness(0.68) contrast(1.1) saturate(0.75);">
-          <div class="iso-grain" style="opacity:0.38;"></div>
+
+      <!-- SLIDE 2: EXPOSURE TRIANGLE -->
+      <div class="slide s2">
+        <div class="tag">01 · Foundation</div>
+        <h2>The Exposure<br>Triangle</h2>
+        <div class="triangle-wrap">
+          <svg class="triangle-svg" viewBox="0 0 260 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="130,10 10,220 250,220" fill="#0D0D0D" stroke="#C9A84C" stroke-width="2"/>
+            <polygon points="130,40 30,210 230,210" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+            <polygon points="130,70 52,200 208,200" fill="none" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <text x="130" y="6" text-anchor="middle" fill="#FF4D1C" font-family="Bebas Neue, sans-serif" font-size="14" letter-spacing="2">APERTURE</text>
+            <text x="8" y="244" text-anchor="start" fill="#FF4D1C" font-family="Bebas Neue, sans-serif" font-size="14" letter-spacing="2">ISO</text>
+            <text x="252" y="244" text-anchor="end" fill="#FF4D1C" font-family="Bebas Neue, sans-serif" font-size="14" letter-spacing="2">SHUTTER</text>
+            <text x="130" y="140" text-anchor="middle" fill="#C9A84C" font-family="Bebas Neue, sans-serif" font-size="18" letter-spacing="3">EXPOSURE</text>
+            <text x="130" y="158" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-family="sans-serif" font-size="9" letter-spacing="1">PERFECT BALANCE</text>
+            <circle cx="130" cy="15" r="4" fill="#FF4D1C"/>
+            <circle cx="15" cy="220" r="4" fill="#FF4D1C"/>
+            <circle cx="245" cy="220" r="4" fill="#FF4D1C"/>
+          </svg>
         </div>
-        <div class="iso-foot"><span class="iso-v">ISO 6400</span><span class="iso-d">Grainy · Night</span></div>
+        <p class="desc">Every photo is made by balancing three settings. Change one and you'll need to adjust the others to keep the right exposure — how bright or dark your image is.</p>
+        <div class="watermark watermark-dark">@lumeaxis_</div>
       </div>
-    </div>
-    <div class="iso-bar">
-      <span style="color:#7aaa88;font-size:0.6rem;">Low ISO = Clean</span>
-      <div class="bar"></div>
-      <span style="color:#cc7755;font-size:0.6rem;">High ISO = Grain</span>
-    </div>
-  </div>
+
+      <!-- SLIDE 3: APERTURE -->
+      <div class="slide s3">
+        <div class="tag">02 · Setting</div>
+        <h2>Aperture</h2>
+        <div class="sub">f-stop · The lens opening</div>
+        <div class="aperture-row">
+          <div class="aperture-item">
+            <div class="aperture-hole" style="--hole:8%;width:62px;height:62px;"></div>
+            <span>f/1.8</span>
+            <span style="color:#aaa;font-size:0.55rem;">WIDE</span>
+          </div>
+          <div class="aperture-item">
+            <div class="aperture-hole" style="--hole:28%;width:52px;height:52px;"></div>
+            <span>f/4</span>
+            <span style="color:#aaa;font-size:0.55rem;"> </span>
+          </div>
+          <div class="aperture-item">
+            <div class="aperture-hole" style="--hole:45%;width:44px;height:44px;"></div>
+            <span>f/8</span>
+            <span style="color:#aaa;font-size:0.55rem;"> </span>
+          </div>
+          <div class="aperture-item">
+            <div class="aperture-hole" style="--hole:62%;width:36px;height:36px;"></div>
+            <span>f/16</span>
+            <span style="color:#aaa;font-size:0.55rem;">NARROW</span>
+          </div>
+          <div style="flex:1; display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding-bottom:8px;">
+            <div style="font-size:0.58rem;color:var(--orange);letter-spacing:1px;">MORE LIGHT →</div>
+            <div style="height:4px;background:linear-gradient(90deg,#fff,#333);border-radius:2px;"></div>
+            <div style="font-size:0.58rem;color:#666;letter-spacing:1px;">← LESS LIGHT</div>
+          </div>
+        </div>
+        <div class="dof-bar">
+          <div class="dof-row">
+            <span style="min-width:60px;color:var(--gold);">f/1.8 wide</span>
+            <div class="dof-visual" style="width:30%;"></div>
+            <span style="color:#888;">Blurry background</span>
+          </div>
+          <div class="dof-row">
+            <span style="min-width:60px;color:var(--gold);">f/8</span>
+            <div class="dof-visual" style="width:60%;"></div>
+            <span style="color:#888;">More in focus</span>
+          </div>
+          <div class="dof-row">
+            <span style="min-width:60px;color:var(--gold);">f/16 narrow</span>
+            <div class="dof-visual" style="width:95%;"></div>
+            <span style="color:#888;">Everything sharp</span>
+          </div>
+        </div>
+        <div class="watermark">@lumeaxis_</div>
+      </div>
+
+      <!-- SLIDE 4: SHUTTER SPEED -->
+      <div class="slide s4">
+        <div class="tag">03 · Setting</div>
+        <h2>Shutter Speed</h2>
+        <div class="sub">How long the sensor sees light</div>
+        <div class="shutter-examples">
+
+          <div class="shutter-box">
+            <div class="label">FAST</div>
+            <div class="val">1/2000s</div>
+            <div class="fast-scene">
+              <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0d1f35"/>
+                    <stop offset="100%" stop-color="#0d1117"/>
+                  </linearGradient>
+                </defs>
+                <rect width="200" height="120" fill="url(#skyg)"/>
+                <g transform="translate(80,45)">
+                  <ellipse cx="0" cy="0" rx="14" ry="5" fill="#ccc"/>
+                  <path d="M-14,-2 Q-28,-18 -36,-8 Q-24,-2 -14,2 Z" fill="#bbb"/>
+                  <path d="M14,-2 Q28,-18 36,-8 Q24,-2 14,2 Z" fill="#bbb"/>
+                  <circle cx="10" cy="-2" r="3" fill="#ddd"/>
+                  <ellipse cx="14" cy="-1" rx="3" ry="1.5" fill="#e8a000"/>
+                </g>
+                <text x="100" y="108" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-family="sans-serif">Freezes motion</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="shutter-box">
+            <div class="label">SLOW</div>
+            <div class="val">2s</div>
+            <div class="slow-scene">
+              <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="120" fill="#000"/>
+                <defs>
+                  <linearGradient id="trail1" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="40%" stop-color="#ff4400"/>
+                    <stop offset="60%" stop-color="#ffaa00"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </linearGradient>
+                  <linearGradient id="trail2" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="30%" stop-color="#ff2200"/>
+                    <stop offset="70%" stop-color="#ff8800"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </linearGradient>
+                  <linearGradient id="trail3" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="50%" stop-color="#ffcc00"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="55" width="200" height="2" fill="url(#trail1)" opacity="0.9"/>
+                <rect x="20" y="62" width="180" height="1.5" fill="url(#trail2)" opacity="0.7"/>
+                <rect x="0" y="70" width="160" height="1" fill="url(#trail3)" opacity="0.5"/>
+                <rect x="30" y="45" width="140" height="1" fill="url(#trail1)" opacity="0.4"/>
+                <rect x="0" y="80" width="200" height="40" fill="#111"/>
+                <rect x="85" y="85" width="30" height="3" fill="#333" rx="1"/>
+                <text x="100" y="115" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-family="sans-serif">Light trails</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="shutter-box">
+            <div class="label">MEDIUM</div>
+            <div class="val">1/250s</div>
+            <div class="blur-scene">
+              <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="120" fill="#0a0a0a"/>
+                <defs>
+                  <linearGradient id="cargrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="15%" stop-color="#8B0000"/>
+                    <stop offset="50%" stop-color="#cc0000"/>
+                    <stop offset="85%" stop-color="#8B0000"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </linearGradient>
+                  <filter id="mblur">
+                    <feGaussianBlur stdDeviation="3,0.5"/>
+                  </filter>
+                </defs>
+                <rect x="30" y="50" width="140" height="22" fill="url(#cargrad)" rx="3" filter="url(#mblur)"/>
+                <rect x="0" y="48" width="50" height="1.5" fill="#cc000066" filter="url(#mblur)"/>
+                <circle cx="60" cy="72" r="7" fill="#222" filter="url(#mblur)"/>
+                <circle cx="140" cy="72" r="7" fill="#222" filter="url(#mblur)"/>
+                <text x="100" y="105" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-family="sans-serif">Slight motion blur</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="shutter-box">
+            <div class="label">VERY SLOW</div>
+            <div class="val">10s</div>
+            <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="200" height="120" fill="#0a1520"/>
+              <defs>
+                <linearGradient id="watergrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1a4060"/>
+                  <stop offset="100%" stop-color="#0a1520"/>
+                </linearGradient>
+                <filter id="wblur"><feGaussianBlur stdDeviation="0,2"/></filter>
+              </defs>
+              <ellipse cx="50" cy="75" rx="20" ry="10" fill="#333"/>
+              <ellipse cx="150" cy="80" rx="25" ry="12" fill="#2a2a2a"/>
+              <rect x="0" y="70" width="200" height="50" fill="url(#watergrad)" opacity="0.8" filter="url(#wblur)"/>
+              <rect x="0" y="68" width="200" height="4" fill="#2a6080" opacity="0.6" filter="url(#wblur)"/>
+              <rect x="88" y="20" width="24" height="60" fill="url(#watergrad)" opacity="0.5" filter="url(#wblur)"/>
+              <rect x="93" y="20" width="14" height="60" fill="#aaccdd" opacity="0.25" filter="url(#wblur)"/>
+              <text x="100" y="115" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-family="sans-serif">Silky water effect</text>
+            </svg>
+          </div>
+
+        </div>
+        <div class="watermark">@lumeaxis_</div>
+      </div>
+
+      <!-- SLIDE 5: ISO -->
+      <div class="slide s5">
+        <div class="tag">04 · Setting</div>
+        <h2>ISO</h2>
+        <div class="sub">Sensor sensitivity to light</div>
+        <div class="iso-scale">
+          <div class="iso-block" style="background:#f5f5f5;">
+            <div class="iso-val">100</div>
+            <span>☀️ Bright</span>
+          </div>
+          <div class="iso-block" style="background:#ebebeb; position:relative;">
+            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 40 80"><circle cx="8" cy="15" r="0.5" fill="#000"/><circle cx="22" cy="35" r="0.5" fill="#000"/><circle cx="30" cy="55" r="0.5" fill="#000"/><circle cx="12" cy="70" r="0.5" fill="#000"/></svg>
+            <div class="iso-val">400</div>
+            <span>Indoor</span>
+          </div>
+          <div class="iso-block" style="background:#d8d8d8; position:relative;">
+            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.3" viewBox="0 0 40 80"><circle cx="5" cy="10" r="0.7" fill="#000"/><circle cx="15" cy="30" r="0.7" fill="#000"/><circle cx="28" cy="20" r="0.7" fill="#000"/><circle cx="10" cy="50" r="0.7" fill="#000"/><circle cx="33" cy="65" r="0.7" fill="#000"/><circle cx="20" cy="75" r="0.7" fill="#000"/></svg>
+            <div class="iso-val">1600</div>
+            <span>Low light</span>
+          </div>
+          <div class="iso-block" style="background:#bbb; position:relative;">
+            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.5" viewBox="0 0 40 80"><circle cx="5" cy="8" r="1" fill="#000"/><circle cx="18" cy="18" r="1" fill="#fff"/><circle cx="30" cy="12" r="1" fill="#000"/><circle cx="8" cy="35" r="1" fill="#fff"/><circle cx="22" cy="28" r="1" fill="#000"/><circle cx="35" cy="40" r="1" fill="#fff"/><circle cx="12" cy="55" r="1" fill="#000"/><circle cx="26" cy="65" r="1" fill="#fff"/><circle cx="6" cy="75" r="1" fill="#000"/><circle cx="38" cy="70" r="1" fill="#fff"/></svg>
+            <div class="iso-val" style="color:#fff;">6400</div>
+            <span style="color:#fff;">Night</span>
+          </div>
+          <div class="iso-block" style="background:#999; position:relative;">
+            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.7" viewBox="0 0 40 80"><circle cx="4" cy="6" r="1.2" fill="#000"/><circle cx="16" cy="14" r="1.2" fill="#fff"/><circle cx="29" cy="9" r="1.2" fill="#000"/><circle cx="7" cy="28" r="1.2" fill="#fff"/><circle cx="20" cy="22" r="1.2" fill="#000"/><circle cx="35" cy="35" r="1.2" fill="#fff"/><circle cx="11" cy="45" r="1.2" fill="#000"/><circle cx="24" cy="55" r="1.2" fill="#fff"/><circle cx="5" cy="68" r="1.2" fill="#000"/><circle cx="37" cy="62" r="1.2" fill="#fff"/><circle cx="18" cy="75" r="1.2" fill="#000"/><circle cx="32" cy="78" r="1.2" fill="#fff"/></svg>
+            <div class="iso-val" style="color:#fff;">25600</div>
+            <span style="color:#fff;">🌙 Dark</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:14px;">
+          <span style="font-size:0.6rem;color:#888;">← CLEAN IMAGE</span>
+          <span style="font-size:0.6rem;color:#888;">GRAINY IMAGE →</span>
+        </div>
+        <div class="iso-tips">
+          <div class="iso-tip">
+            <div class="emoji">☀️</div>
+            <p><strong style="color:#fff;">Outdoors</strong><br>ISO 100–200<br>Clean, crisp</p>
+          </div>
+          <div class="iso-tip">
+            <div class="emoji">🏠</div>
+            <p><strong style="color:#fff;">Indoors</strong><br>ISO 400–1600<br>Some grain ok</p>
+          </div>
+          <div class="iso-tip">
+            <div class="emoji">🌃</div>
+            <p><strong style="color:#fff;">Night</strong><br>ISO 3200+<br>Use tripod!</p>
+          </div>
+        </div>
+        <div class="watermark watermark-dark">@lumeaxis_</div>
+      </div>
+
+      <!-- SLIDE 6: HOW THEY WORK TOGETHER -->
+      <div class="slide s6">
+        <div class="tag">05 · Concept</div>
+        <h2>Balancing<br>All Three</h2>
+        <div class="exposure-meter">
+          <div class="meter-label">Exposure Meter</div>
+          <div class="meter-bar">
+            <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:2px;height:22px;background:var(--orange);"></div>
+          </div>
+          <div class="meter-labels">
+            <span>Under<br>exposed</span>
+            <span style="color:var(--orange);">▲ Correct</span>
+            <span>Over<br>exposed</span>
+          </div>
+        </div>
+        <div class="triangle-settings">
+          <div class="setting-card">
+            <div class="icon">◎</div>
+            <div class="name">Aperture</div>
+            <div class="effect">Controls light + background blur (depth)</div>
+          </div>
+          <div class="setting-card">
+            <div class="icon">⏱</div>
+            <div class="name">Shutter</div>
+            <div class="effect">Controls light + freezing motion</div>
+          </div>
+          <div class="setting-card">
+            <div class="icon">📡</div>
+            <div class="name">ISO</div>
+            <div class="effect">Boosts light but adds grain/noise</div>
+          </div>
+        </div>
+        <p class="balance-note">Change one → something else changes.<br>The goal: find the right balance for your scene.</p>
+        <div class="watermark">@lumeaxis_</div>
+      </div>
+
+      <!-- SLIDE 7: DEPTH OF FIELD -->
+      <div class="slide s7">
+        <div class="tag">06 · Visual Effect</div>
+        <h2>Depth of Field</h2>
+        <div class="sub">How much of your scene is in focus</div>
+        <div class="dof-scene">
+          <div class="dof-card">
+            <div class="dof-card-img">
+              <svg width="100%" height="100%" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="bkg-blur"><feGaussianBlur stdDeviation="4"/></filter>
+                </defs>
+                <rect width="160" height="160" fill="#2a4a2a"/>
+                <circle cx="40" cy="60" r="30" fill="#3a6a3a" filter="url(#bkg-blur)"/>
+                <circle cx="120" cy="40" r="20" fill="#4a7a4a" filter="url(#bkg-blur)"/>
+                <circle cx="80" cy="80" r="40" fill="#2d5a2d" filter="url(#bkg-blur)"/>
+                <g transform="translate(80,100)">
+                  <ellipse cx="0" cy="0" rx="18" ry="22" fill="#d4884a"/>
+                  <circle cx="0" cy="-14" r="10" fill="#c47840"/>
+                  <circle cx="-3" cy="-16" r="2" fill="#1a1a1a"/>
+                  <circle cx="3" cy="-16" r="2" fill="#1a1a1a"/>
+                  <path d="M-4,-12 Q0,-9 4,-12" stroke="#1a1a1a" stroke-width="0.8" fill="none"/>
+                  <path d="M-8,-22 L-12,-30 L-4,-24 Z" fill="#c47840"/>
+                  <path d="M8,-22 L12,-30 L4,-24 Z" fill="#c47840"/>
+                </g>
+                <rect x="0" y="130" width="160" height="30" fill="#1a3a1a" filter="url(#bkg-blur)"/>
+              </svg>
+            </div>
+            <div class="card-label"><strong>f/1.8</strong>Subject sharp,<br>background blurred</div>
+          </div>
+          <div class="dof-card">
+            <div class="dof-card-img">
+              <svg width="100%" height="100%" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="160" height="160" fill="#4a7a9a"/>
+                <rect width="160" height="70" fill="#5a8aaa"/>
+                <polygon points="0,90 40,30 80,90" fill="#3a6a5a"/>
+                <polygon points="40,90 80,35 120,90" fill="#4a7a6a"/>
+                <polygon points="80,90 130,40 160,90" fill="#3d6d5d"/>
+                <rect x="0" y="90" width="160" height="70" fill="#5a8a3a"/>
+                <polygon points="70,160 90,160 95,90 65,90" fill="#8aaa6a"/>
+                <circle cx="20" cy="140" r="5" fill="#ffaa00"/>
+                <circle cx="35" cy="148" r="4" fill="#ff8800"/>
+                <circle cx="140" cy="142" r="5" fill="#ffcc00"/>
+                <ellipse cx="50" cy="25" rx="20" ry="8" fill="rgba(255,255,255,0.6)"/>
+                <ellipse cx="120" cy="20" rx="15" ry="6" fill="rgba(255,255,255,0.5)"/>
+              </svg>
+            </div>
+            <div class="card-label"><strong>f/16</strong>Everything sharp,<br>front to back</div>
+          </div>
+        </div>
+        <p style="font-size:0.68rem;color:#aaa;margin-top:14px;line-height:1.5;">Use <strong style="color:var(--gold);">wide aperture (f/1.8)</strong> for portraits. Use <strong style="color:var(--gold);">narrow (f/16)</strong> for landscapes.</p>
+        <div class="watermark">@lumeaxis_</div>
+      </div>
+
+      <!-- SLIDE 8: CHEAT SHEET -->
+      <div class="slide s8">
+        <div class="tag">07 · Reference</div>
+        <h2>Quick Cheat Sheet</h2>
+        <div class="cheat-grid">
+          <div class="cheat-row">
+            <div class="cheat-setting">
+              <div class="s-emoji">◎</div>
+              <div class="s-name">APERTURE</div>
+            </div>
+            <div class="cheat-cols">
+              <div class="cheat-col">
+                <div class="c-label">Wide (f/1.8)</div>
+                <div class="c-val">Bright + blurry background</div>
+              </div>
+              <div class="cheat-col">
+                <div class="c-label">Narrow (f/16)</div>
+                <div class="c-val">Less light + everything sharp</div>
+              </div>
+            </div>
+          </div>
+          <div class="cheat-row">
+            <div class="cheat-setting">
+              <div class="s-emoji">⏱</div>
+              <div class="s-name">SHUTTER</div>
+            </div>
+            <div class="cheat-cols">
+              <div class="cheat-col">
+                <div class="c-label">Fast (1/1000s)</div>
+                <div class="c-val">Freeze action, less light</div>
+              </div>
+              <div class="cheat-col">
+                <div class="c-label">Slow (1/30s)</div>
+                <div class="c-val">Motion blur, more light</div>
+              </div>
+            </div>
+          </div>
+          <div class="cheat-row">
+            <div class="cheat-setting">
+              <div class="s-emoji">📡</div>
+              <div class="s-name">ISO</div>
+            </div>
+            <div class="cheat-cols">
+              <div class="cheat-col">
+                <div class="c-label">Low (ISO 100)</div>
+                <div class="c-val">Clean image, needs more light</div>
+              </div>
+              <div class="cheat-col">
+                <div class="c-label">High (ISO 6400)</div>
+                <div class="c-val">Works in dark, adds grain</div>
+              </div>
+            </div>
+          </div>
+          <div class="cheat-row">
+            <div class="cheat-setting" style="background:#1a1a2e;">
+              <div class="s-emoji">🎯</div>
+              <div class="s-name" style="color:#7a9fff;">PORTRAIT</div>
+            </div>
+            <div class="cheat-cols">
+              <div class="cheat-col" style="background:#f0f0ff;">
+                <div class="c-label">Setting</div>
+                <div class="c-val">f/1.8 · 1/200s · ISO 200</div>
+              </div>
+              <div class="cheat-col" style="background:#e8e8ff;">
+                <div class="c-label">Result</div>
+                <div class="c-val">Sharp subject, soft bg</div>
+              </div>
+            </div>
+          </div>
+          <div class="cheat-row">
+            <div class="cheat-setting" style="background:#1a2e1a;">
+              <div class="s-emoji">🌄</div>
+              <div class="s-name" style="color:#7aff9f;">LANDSCAPE</div>
+            </div>
+            <div class="cheat-cols">
+              <div class="cheat-col" style="background:#f0fff0;">
+                <div class="c-label">Setting</div>
+                <div class="c-val">f/11 · 1/125s · ISO 100</div>
+              </div>
+              <div class="cheat-col" style="background:#e8ffe8;">
+                <div class="c-label">Result</div>
+                <div class="c-val">Everything pin sharp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="watermark watermark-dark">@lumeaxis_</div>
+      </div>
+
+      <!-- SLIDE 9: FINAL -->
+      <div class="slide s9">
+        <span class="accent">GO<br>SHOOT</span>
+        <h2>NOW YOU KNOW</h2>
+        <div class="tips-list">
+          <div class="tip-row">
+            <div class="num">1</div>
+            <p>Start in <strong>Aperture Priority (Av/A)</strong> mode — you control depth, camera handles the rest</p>
+          </div>
+          <div class="tip-row">
+            <div class="num">2</div>
+            <p>Keep <strong>ISO as low as possible</strong> — only raise it when you truly need more light</p>
+          </div>
+          <div class="tip-row">
+            <div class="num">3</div>
+            <p>Shutter speed <strong>below 1/60s?</strong> Use a tripod or you'll get camera shake blur</p>
+          </div>
+          <div class="tip-row">
+            <div class="num">4</div>
+            <p>The <strong>best way to learn</strong> is to shoot in Manual mode and experiment daily</p>
+          </div>
+        </div>
+
+        <!-- Instagram CTA -->
+        <div class="ig-cta">
+          <div class="ig-divider"></div>
+          <div class="ig-line">
+            <div class="ig-icon">
+              <!-- Instagram icon SVG -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+              </svg>
+            </div>
+            <span class="ig-handle">@lumeaxis_</span>
+          </div>
+          <div class="ig-sub">Follow for more photography tips</div>
+        </div>
+
+        <div class="watermark" style="color:rgba(255,255,255,0.18);">@lumeaxis_</div>
+      </div>
+
+    </div><!-- end track -->
+  </div><!-- end carousel -->
 </div>
 
-<!-- 6. SCENARIOS -->
-<div class="slide s6">
-  <div class="body">
-    <div class="num-tag">06 / 09</div>
-    <div class="eyebrow-t">Putting it Together</div>
-    <h2>Real Scenarios</h2>
-    <div class="sub">The same logic, applied to real shots</div>
-    <div class="scenarios">
-      <div class="scenario">
-        <div class="sc-photo" style="background:url('https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&q=80') center top/cover;"></div>
-        <div class="sc-info">
-          <div class="sc-title">Portrait</div>
-          <div class="sc-pills"><span class="pill"><strong>f/1.8</strong> wide</span><span class="pill"><strong>1/200s</strong></span><span class="pill"><strong>ISO 200</strong></span></div>
-          <div class="sc-note">Blurry bg, sharp face, plenty of light</div>
-        </div>
-      </div>
-      <div class="scenario">
-        <div class="sc-photo" style="background:url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=300&q=80') center/cover;"></div>
-        <div class="sc-info">
-          <div class="sc-title">Sports / Action</div>
-          <div class="sc-pills"><span class="pill"><strong>f/4</strong></span><span class="pill"><strong>1/1000s</strong> fast</span><span class="pill"><strong>ISO 800</strong></span></div>
-          <div class="sc-note">Freeze the motion, raise ISO for speed</div>
-        </div>
-      </div>
-      <div class="scenario">
-        <div class="sc-photo" style="background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80') center/cover;"></div>
-        <div class="sc-info">
-          <div class="sc-title">Landscape</div>
-          <div class="sc-pills"><span class="pill"><strong>f/11</strong> narrow</span><span class="pill"><strong>1/60s</strong></span><span class="pill"><strong>ISO 100</strong></span></div>
-          <div class="sc-note">Everything sharp, cleanest image</div>
-        </div>
-      </div>
-      <div class="scenario">
-        <div class="sc-photo" style="background:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=300&q=80') center bottom/cover;"></div>
-        <div class="sc-info">
-          <div class="sc-title">Night / City</div>
-          <div class="sc-pills"><span class="pill"><strong>f/2.8</strong></span><span class="pill"><strong>1/30s</strong></span><span class="pill"><strong>ISO 3200</strong></span></div>
-          <div class="sc-note">Let in as much light as possible</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 7. DEPTH OF FIELD -->
-<div class="slide s7">
-  <div class="body">
-    <div class="eyebrow-g">Visual Effect</div>
-    <h2>Depth of Field</h2>
-    <div class="sub">How much of your scene is in focus</div>
-    <div class="dof-pair">
-      <div class="dof-card">
-        <div class="dof-img" style="background:url('https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80') center/cover;"></div>
-        <div class="dof-foot"><span class="dof-f">f / 1.8</span><span class="dof-l">Shallow — subject sharp,<br>background softly blurred</span></div>
-      </div>
-      <div class="dof-card">
-        <div class="dof-img" style="background:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=80') center/cover;"></div>
-        <div class="dof-foot"><span class="dof-f">f / 16</span><span class="dof-l">Deep — everything sharp,<br>front to back</span></div>
-      </div>
-    </div>
-    <p class="dof-tip">Portraits → wide aperture &nbsp;·&nbsp; Landscapes → narrow aperture</p>
-  </div>
-</div>
-
-<!-- 8. CHEAT SHEET -->
-<div class="slide s8">
-  <div class="body">
-    <div class="eyebrow-t">Quick Reference</div>
-    <h2>Your Cheat Sheet</h2>
-    <div class="cheat">
-      <div class="cheat-row">
-        <div class="cn"><span class="ico">◎</span><span class="nm">Aperture</span></div>
-        <div class="cc"><div class="cl">Wide — f/1.8</div><div class="cv">More light<br>Blurry background</div></div>
-        <div class="cc"><div class="cl">Narrow — f/16</div><div class="cv">Less light<br>Everything sharp</div></div>
-      </div>
-      <div class="cheat-row">
-        <div class="cn"><span class="ico">⏱</span><span class="nm">Shutter</span></div>
-        <div class="cc"><div class="cl">Fast — 1/1000s</div><div class="cv">Freezes motion<br>Less light in</div></div>
-        <div class="cc"><div class="cl">Slow — 1/15s</div><div class="cv">Motion blur<br>More light in</div></div>
-      </div>
-      <div class="cheat-row">
-        <div class="cn"><span class="ico">☀</span><span class="nm">ISO</span></div>
-        <div class="cc"><div class="cl">Low — ISO 100</div><div class="cv">Clean image<br>Needs bright light</div></div>
-        <div class="cc"><div class="cl">High — ISO 6400</div><div class="cv">Works in dark<br>Adds grain</div></div>
-      </div>
-      <div class="cheat-row">
-        <div class="cn" style="background:var(--sage);"><span class="ico">💡</span><span class="nm">Start here</span></div>
-        <div class="cc" style="background:#eaf0e5; grid-column: span 2;"><div class="cv" style="font-size:0.72rem;">Try <strong>Aperture Priority (Av)</strong> mode first — you control depth, camera handles exposure automatically.</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 9. FINALE -->
-<div class="slide s9">
-  <div class="bg"></div>
-  <div class="ov"></div>
-  <div class="body">
-    <h2>Now <em>go</em><br>make photos</h2>
-    <div class="tips">
-      <div class="tip"><div class="tip-n">1</div><p>Start in <strong>Aperture Priority (Av/A)</strong> — you pick the depth, camera handles the rest</p></div>
-      <div class="tip"><div class="tip-n">2</div><p>Keep <strong>ISO as low as possible</strong> — only raise it when you truly need more light</p></div>
-      <div class="tip"><div class="tip-n">3</div><p>Shutter below <strong>1/60s? Use a tripod</strong> — camera shake will blur your shot</p></div>
-      <div class="tip"><div class="tip-n">4</div><p>The fastest way to learn is to <strong>shoot Manual every day</strong> and experiment freely</p></div>
-    </div>
-  </div>
-</div>
-
-</div><!-- /track -->
-</div><!-- /wrapper -->
-
+<!-- NAV -->
 <div class="nav">
-  <button class="btn" id="prev">&#8592;</button>
+  <button class="btn" id="prev">←</button>
   <div class="dots" id="dots"></div>
   <div class="counter" id="counter">1 / 9</div>
-  <button class="btn" id="next">&#8594;</button>
+  <button class="btn" id="next">→</button>
 </div>
 
 <script>
-const track = document.getElementById('track');
-const dotsEl = document.getElementById('dots');
-const counter = document.getElementById('counter');
-const slides = document.querySelectorAll('.slide');
-const total = slides.length;
-let cur = 0;
+  const track = document.getElementById('track');
+  const dotsEl = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let cur = 0;
 
-for (let i = 0; i < total; i++) {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
-  d.addEventListener('click', () => goTo(i));
-  dotsEl.appendChild(d);
-}
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  }
 
-function goTo(n) {
-  cur = (n + total) % total;
-  track.style.transform = `translateX(-${cur * slides[0].offsetWidth}px)`;
-  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === cur));
-  counter.textContent = `${cur+1} / ${total}`;
-}
+  function goTo(n) {
+    cur = (n + total) % total;
+    const slideWidth = slides[0].offsetWidth;
+    track.style.transform = `translateX(-${cur * slideWidth}px)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    counter.textContent = `${cur + 1} / ${total}`;
+  }
 
-document.getElementById('prev').addEventListener('click', () => goTo(cur-1));
-document.getElementById('next').addEventListener('click', () => goTo(cur+1));
-document.addEventListener('keydown', e => { if(e.key==='ArrowRight') goTo(cur+1); if(e.key==='ArrowLeft') goTo(cur-1); });
+  document.getElementById('prev').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('next').addEventListener('click', () => goTo(cur + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(cur + 1);
+    if (e.key === 'ArrowLeft') goTo(cur - 1);
+  });
 
-let sx = 0;
-track.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
-track.addEventListener('touchend', e => { const d = sx - e.changedTouches[0].clientX; if(Math.abs(d)>40) goTo(d>0?cur+1:cur-1); });
+  let startX = 0;
+  track.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? cur + 1 : cur - 1);
+  });
 
-window.addEventListener('resize', () => {
-  track.style.transition = 'none';
-  track.style.transform = `translateX(-${cur * slides[0].offsetWidth}px)`;
-  setTimeout(() => track.style.transition = '', 50);
-});
+  window.addEventListener('resize', () => {
+    const slideWidth = slides[0].offsetWidth;
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${cur * slideWidth}px)`;
+    setTimeout(() => track.style.transition = '', 50);
+  });
 </script>
 </body>
 </html>
